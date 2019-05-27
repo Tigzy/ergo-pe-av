@@ -133,7 +133,7 @@ def encode_pe(filepath):
     try:
         pe       = lief.PE.parse(list(raw)) 
     except Exception as e:
-        log.warning("error white parsing file %s as PE: %s", filepath, e)
+        log.warning("error while parsing file %s as PE: %s", filepath, e)
         return None
     ep_bytes = [0] * 64
     try:
