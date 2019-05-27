@@ -134,7 +134,7 @@ def encode_pe(filepath):
         pe       = lief.PE.parse(list(raw)) 
     except Exception as e:
         log.warning("error while parsing file %s as PE: %s", filepath, e)
-        return None
+        return []
     ep_bytes = [0] * 64
     try:
         ep_offset = pe.entrypoint - pe.optional_header.imagebase
