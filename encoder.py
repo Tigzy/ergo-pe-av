@@ -130,7 +130,11 @@ def encode_pe(filepath):
             raw = fp.read()
     
     sz       = len(raw)
-    pe       = lief.PE.parse(list(raw)) 
+    try:
+        pe       = lief.PE.parse(list(raw)) 
+    except Exception as e:
+        log.warning("can't get entrypoint bytes from %s: %s", filepath, e)
+        return None
     ep_bytes = [0] * 64
     try:
         ep_offset = pe.entrypoint - pe.optional_header.imagebase
